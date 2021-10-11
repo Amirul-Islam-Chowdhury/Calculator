@@ -6,7 +6,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  var num1 = 0, num2 = 0, sum = 0;
+  var num1 = 0, num2 = 0, sum = 0, sqoure = 0;
   final TextEditingController t1 = TextEditingController(text: '0');
   final TextEditingController t2 = TextEditingController(text: '0');
   //addition
@@ -45,13 +45,21 @@ class HomePageState extends State<HomePage> {
     });
   }
 
+  //power
+  void doPower() {
+    num1 = int.parse(t1.text);
+    num2 = int.parse(t2.text);
+    sqoure = (num1 * num1) + (num2 * num2);
+  }
+
   //Clear
   void doClear() {
     setState(() {
       num1 = 0;
       num2 = 0;
-      t1.text = "0";
-      t2.text = "0";
+      sum = 0;
+      t1.text = "";
+      t2.text = "";
     });
   }
 
@@ -115,19 +123,24 @@ class HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 20.0),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 MaterialButton(
-                  child: Text(" CLear "),
+                  child: Text(" Clear "),
                   color: Colors.greenAccent,
                   onPressed: doClear,
                 ),
+                MaterialButton(
+                  child: Text(" ^ "),
+                  color: Colors.greenAccent,
+                  onPressed: doPower,
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
