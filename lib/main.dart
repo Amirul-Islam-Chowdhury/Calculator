@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'calculator.dart';
+import 'Coverter/converter.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'My calculator',
       theme: ThemeData(primarySwatch: Colors.red),
       home: HomePage(),
+      routes: {'/convert': (_) => Conveter()},
     );
   }
 }
