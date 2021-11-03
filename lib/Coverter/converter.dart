@@ -34,7 +34,7 @@ class _ConveterState extends State<Conveter> {
                       color: Colors.red)),
               TextField(
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(hintText: 'Enter mumber 1'),
+                decoration: InputDecoration(hintText: 'Enter  Kilomiter '),
                 controller: t1,
               ),
 
