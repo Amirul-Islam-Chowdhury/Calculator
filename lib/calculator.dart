@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:powers/powers.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,14 +9,15 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  var num1 = 0, num2 = 0, sum = 0, sqoure = 0;
-  final TextEditingController t1 = TextEditingController(text: '0');
-  final TextEditingController t2 = TextEditingController(text: '0');
+  double num1 = 0, num2 = 0, sum = 0;
+  double square = 0;
+  final TextEditingController t1 = TextEditingController(text: '');
+  final TextEditingController t2 = TextEditingController(text: '');
   //addition
   void DoAdditon() {
     setState(() {
-      num1 = int.parse(t1.text);
-      num2 = int.parse(t2.text);
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
       sum = num1 + num2;
     });
   }
@@ -21,8 +25,8 @@ class HomePageState extends State<HomePage> {
   // subbtraction
   void DoSub() {
     setState(() {
-      num1 = int.parse(t1.text);
-      num2 = int.parse(t2.text);
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
       sum = num1 - num2;
     });
   }
@@ -30,8 +34,8 @@ class HomePageState extends State<HomePage> {
 
   void DoMul() {
     setState(() {
-      num1 = int.parse(t1.text);
-      num2 = int.parse(t2.text);
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
       sum = num1 * num2;
     });
   }
@@ -39,17 +43,19 @@ class HomePageState extends State<HomePage> {
 
   void DoDiv() {
     setState(() {
-      num1 = int.parse(t1.text);
-      num2 = int.parse(t2.text);
-      sum = num1 ~/ num2;
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
+      sum = (num1 ~/ num2) as double;
     });
   }
 
   //power
   void doPower() {
-    num1 = int.parse(t1.text);
-    num2 = int.parse(t2.text);
-    sqoure = (num1 * num1) + (num2 * num2);
+    setState(() {
+      num1 = double.parse(t1.text);
+
+      sum = pow(num1, 2) as double;
+    });
   }
 
   //Clear
@@ -75,11 +81,11 @@ class HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(" Output : $sum",
+            Text(" Result : $sum ",
                 style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.red)),
+                    color: Colors.deepOrangeAccent)),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(hintText: 'Enter mumber 1'),
@@ -98,12 +104,12 @@ class HomePageState extends State<HomePage> {
               children: <Widget>[
                 MaterialButton(
                   child: Text('+'),
-                  color: Colors.greenAccent,
+                  color: Colors.deepOrangeAccent,
                   onPressed: DoAdditon,
                 ),
                 MaterialButton(
                   child: Text('-'),
-                  color: Colors.greenAccent,
+                  color: Colors.deepOrangeAccent,
                   onPressed: DoSub,
                 ),
               ],
@@ -113,13 +119,28 @@ class HomePageState extends State<HomePage> {
               children: <Widget>[
                 MaterialButton(
                   child: Text('*'),
-                  color: Colors.greenAccent,
+                  color: Colors.deepOrangeAccent,
                   onPressed: DoMul,
                 ),
                 MaterialButton(
                   child: Text('/'),
-                  color: Colors.greenAccent,
+                  color: Colors.deepOrangeAccent,
                   onPressed: DoSub,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                MaterialButton(
+                  child: Text(" Clear "),
+                  color: Colors.deepOrangeAccent,
+                  onPressed: doClear,
+                ),
+                MaterialButton(
+                  child: Text(" ^ "),
+                  color: Colors.deepOrangeAccent,
+                  onPressed: doPower,
                 ),
               ],
             ),
@@ -127,17 +148,14 @@ class HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(top: 20.0),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 MaterialButton(
-                  child: Text(" Clear "),
-                  color: Colors.greenAccent,
-                  onPressed: doClear,
-                ),
-                MaterialButton(
-                  child: Text(" ^ "),
-                  color: Colors.greenAccent,
-                  onPressed: doPower,
+                  child: Text(" GO TO CONVERTER"),
+                  color: Colors.deepOrange.shade100,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/convert');
+                  },
                 ),
               ],
             ),
